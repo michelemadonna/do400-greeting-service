@@ -21,6 +21,13 @@ pipeline{
             }
         }
 
-        // Add the "Deploy" stage here
+        stage('Release'){
+            steps {
+                sh '''
+                    oc project michele-madonna-dev
+                    oc start-build greeting-service --follow --wait
+                ''' 
+            }
+        }
     }
 }
